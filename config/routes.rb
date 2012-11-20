@@ -1,4 +1,12 @@
 Fruitstand::Application.routes.draw do
+  # get "products/index"
+
+  # get "products/new"
+
+  # get "products/destroy"
+
+  # get "products/edit"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -38,7 +46,12 @@ Fruitstand::Application.routes.draw do
   #       get 'recent', :on => :collection
   #     end
   #   end
+  get '/cart' => "cart#show", as: 'cart'
+  post '/cart/add_item/:product_id' => "cart#add_item", as: 'add_item_cart'
+  post '/cart/remove_item/:line_item_id' => "cart#remove_item", as: 'remove_item_cart'
+  post '/checkout' => "cart#checkout", as: 'checkout_cart'
 
+  root :to => 'products#index'
   # Sample resource route within a namespace:
   #   namespace :admin do
   #     # Directs /admin/products/* to Admin::ProductsController
@@ -47,7 +60,7 @@ Fruitstand::Application.routes.draw do
   #   end
 
   # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
+  # just remember to delete public/public_index.html.
   # root :to => 'welcome#index'
 
   # See how all your routes lay out with "rake routes"

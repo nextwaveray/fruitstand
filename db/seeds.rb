@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+require 'csv'
+
+CSV.foreach('db/fruits.csv')  do |row|
+  Product.create( {name: row[0], price: row[1]} )
+end
